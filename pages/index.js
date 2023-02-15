@@ -24,7 +24,7 @@ export async function getServerSideProps(){
 
   let menuItems = {}
   try{
-    const res = await fetch('http://localhost:3000/api/getMenuItems');
+    const res = await fetch(`${process.env.HOST}/api/getMenuItems`);
     menuItems = await res.json();
     
 
