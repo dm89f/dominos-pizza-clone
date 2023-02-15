@@ -16,7 +16,7 @@ function Header() {
       <div className='flex px-2 md:px-5 lg:px-10  bg-dominos-blue text-white text-sm whitespace-nowrap'>
         <div className='py-3 flex items-center lg:py-1' >
             <GiHamburgerMenu size={30} className="mr-5"  />
-            <Image src={'/logo.svg'} width={180} height={100}/>
+            <Image alt='logo' src={'/logo.svg'} width={180} height={100}/>
         </div>
 
         <div className='py-3  flex ml-auto items-center space-x-4 text-xs lg:py-1 '>
@@ -54,7 +54,7 @@ function Header() {
           <span >EVERYDAY VALUE</span>
           <span >BESTSELLERS</span>
           <span >NEW LAUNCHES</span>
-          <span >VALENTINE'S SPECIAL</span>
+          <span >VALENTINE&apos;S SPECIAL</span>
           <span >VEG PIZZA</span>
           <span >GOURMET PIZZA</span>
           <span >SPECIALITY CHICKEN</span>

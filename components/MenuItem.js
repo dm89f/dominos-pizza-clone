@@ -23,12 +23,12 @@ function MenuItem({item}) {
     <div className='bg-white shadow-lg m-2'>  
       <div  className='h-48 relative'>
         <span className='absolute z-10 top-2 left-2'>
-          <Image  src={`${isVeg?"/veg.svg":"./non_veg.svg"}`} width={20} height={20} />
+          <Image alt='meal type'  src={`${isVeg?"/veg.svg":"./non_veg.svg"}`} width={20} height={20} />
         </span>
         <span className='absolute z-10 top-2 right-2'><AiFillHeart color='red' size={25}/></span>
         <span className='absolute z-10 px-1 font-bold bottom-2 left-2 text-xl text-white bg-gray-600/[.6]'>₹ {" "}100</span>
         <span className='absolute bottom-2 right-2 z-10 whitespace-nowrap text-xs flex items-center bg-white rounded p-1' >Customize {" "} <AiOutlineArrowRight className='mx-2 text-green-600' /></span>
-        <Image src={image} fill/>
+        <Image src={image} alt={title} fill/>
       </div>
       <div className='text-sm p-2'>
         
