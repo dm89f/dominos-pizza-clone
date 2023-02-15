@@ -13,22 +13,23 @@ function Header() {
   return (
     <nav >
       {/* top nav */}
-      <div className='flex px-10  bg-dominos-blue text-white text-sm '>
-        <div className='py-1 flex items-center' >
+      <div className='flex px-2 md:px-5 lg:px-10  bg-dominos-blue text-white text-sm whitespace-nowrap'>
+        <div className='py-3 flex items-center lg:py-1' >
             <GiHamburgerMenu size={30} className="mr-5"  />
             <Image src={'/logo.svg'} width={180} height={100}/>
         </div>
-        <div className='py-1 flex ml-auto items-center space-x-4 '>
-          <div className='flex items-center space-x-2 pl-3 border-l border-gray-200 '>
+
+        <div className='py-3  flex ml-auto items-center space-x-4 text-xs lg:py-1 '>
+          <div className='hidden md:flex items-center space-x-2 pl-3 border-l border-gray-200 '>
             <BsCircle/>
             <span>Delivery</span>
           </div>
-          <div className='flex items-center space-x-2'>
+          <div className='hidden md:flex flex items-center space-x-2'>
             <TiTick  size={20}/>
             <span>Pick Up/ Dine-in</span>
           </div>
 
-          <div className='flex items-center space-x-2 '>
+          <div className='hidden lg:flex flex items-center space-x-2 '>
             <FiMapPin size={20}/>
             <p>Hoysalanagar, Horamavu, Bengaluru</p>
             <MdModeEditOutline size={20}/>
@@ -48,24 +49,26 @@ function Header() {
 
 
       {/* bottom nav */}
-      <div className='flex text-gray-400 bg-white shadow-md shadow-gray-300/50 text-xs space-x-5 items-center justify-center'>
-        <p className='py-2' >EVERYDAY VALUE</p>
-        <p className='py-2  text-dominos-blue border-b-2 border-green-700 '>BESTSELLERS</p>
-        <p className='py-2' >NEW LAUNCHES</p>
-        <p className='py-2' >VALENTINE'S SPECIAL</p>
-        <p className='py-2' >VEG PIZZA</p>
-        <p className='py-2' >GOURMET PIZZA</p>
-        <p className='py-2' >SPECIALITY CHICKEN</p>
-        <p className='py-2' >NON-VEG PIZZA</p>
-        <p className='py-2' >BEVERAGES</p>
-        <p className='py-2' >SPECIALITY CHICKEN</p>
-        <p className='py-2' >SIDES</p>
-        <p className='py-2' >PIZZA MANIA</p>
-        <p className='py-2' >LUNCH COMBOS</p>
-        <p className='py-2' >MEAL FOR 2</p>
-        <p className='py-2' >MEAL FOR 4</p>
-        <p className='py-2' >DESSERT</p>
-        <p className='py-2' >CHEFBOSS</p>
+      <div className='overflow-x-scroll flex justify-center bg-white shadow-md shadow-gray-300/50'>
+        <div className='py-3 space-x-3 text-gray-400  text-xs whitespace-nowrap'>
+          <span >EVERYDAY VALUE</span>
+          <span >BESTSELLERS</span>
+          <span >NEW LAUNCHES</span>
+          <span >VALENTINE'S SPECIAL</span>
+          <span >VEG PIZZA</span>
+          <span >GOURMET PIZZA</span>
+          <span >SPECIALITY CHICKEN</span>
+          <span >NON-VEG PIZZA</span>
+          <span >BEVERAGES</span>
+          <span >SPECIALITY CHICKEN</span>
+          <span >SIDES</span>
+          <span >PIZZA MANIA</span>
+          <span >LUNCH COMBOS</span>
+          <span >MEAL FOR 2</span>
+          <span >MEAL FOR 4</span> 
+          <span >DESSERT</span>
+          <span >CHEFBOSS</span>
+        </div>
       </div>
     </nav>
   )
