@@ -1,13 +1,24 @@
 import React from 'react'
 import MenuItem from './MenuItem'
 
-function PizzaMenuItems({ items }) {
+function PizzaMenuItems({ menuItems }) {
+  
+  const { menuItems:items } = menuItems;
+
+
   return (
-    <div className='relative  pt-10 mt-10 grid sm:grid-cols-2 lg:grid-cols-3 '>
+    <div className='relative pt-10 my-10 pb-10 border-b-2 border-gray-300 grid sm:grid-cols-2 lg:grid-cols-3 '>
       <span className='absolute -top-6 left-6 text-lg bg-white p-3 rounded-full px-6'>BESTSELLERS</span>
-      <MenuItem/>
-      <MenuItem/>
-      <MenuItem/> 
+      {
+        items.map( (item)=>{
+                    
+            return(
+            <MenuItem key={item._id} item={item} />
+          )
+        })
+
+      }
+      
     </div>
   )
 }
