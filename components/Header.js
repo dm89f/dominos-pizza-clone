@@ -6,12 +6,16 @@ import {BsCircle} from 'react-icons/bs';
 import {FiMapPin} from 'react-icons/fi'
 import {MdModeEditOutline} from 'react-icons/md'
 import {FaUserCircle} from 'react-icons/fa';
-
-
+import { useSelector } from 'react-redux';
+import { getAllMenuCategories } from '../features/MenuItems/menuItemsSlice'
 
 function Header() {
+
+  const categories = useSelector(getAllMenuCategories);
+
+
   return (
-    <nav >
+    <nav className='sticky top-0 z-50' >
       {/* top nav */}
       <div className='flex px-2 md:px-5 lg:px-10  bg-dominos-blue text-white text-sm whitespace-nowrap'>
         <div className='py-3 flex items-center lg:py-1' >
@@ -45,29 +49,17 @@ function Header() {
         </div>
       </div>     
 
-      
-
-
       {/* bottom nav */}
-      <div className='overflow-x-scroll flex justify-center bg-white shadow-md shadow-gray-300/50'>
-        <div className='py-3 space-x-3 text-gray-400  text-xs whitespace-nowrap'>
-          <span >EVERYDAY VALUE</span>
-          <span >BESTSELLERS</span>
-          <span >NEW LAUNCHES</span>
-          <span >VALENTINE&apos;S SPECIAL</span>
-          <span >VEG PIZZA</span>
-          <span >GOURMET PIZZA</span>
-          <span >SPECIALITY CHICKEN</span>
-          <span >NON-VEG PIZZA</span>
-          <span >BEVERAGES</span>
-          <span >SPECIALITY CHICKEN</span>
-          <span >SIDES</span>
-          <span >PIZZA MANIA</span>
-          <span >LUNCH COMBOS</span>
-          <span >MEAL FOR 2</span>
-          <span >MEAL FOR 4</span> 
-          <span >DESSERT</span>
-          <span >CHEFBOSS</span>
+      <div className=' flex justify-center bg-white shadow-md shadow-gray-300/50'>
+        <div className='py-3 flex 2xl:justify-center w-screen overflow-x-scroll  text-gray-400  text-xs whitespace-nowrap'>
+
+          {
+            categories&&categories.map( (categ)=>(
+              <span key={categ} className='mx-3'>{categ}</span>
+            ) )
+
+          }
+          
         </div>
       </div>
     </nav>
