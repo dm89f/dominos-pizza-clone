@@ -3,7 +3,7 @@ const {MenuItems} = require('../../models/MenuItem')
 export default async function handler(req, res) {
   try{
 
-    const menuItems = await MenuItems.find({});
+    const menuItems = await MenuItems.find({}).limit(20);
     res.status(200).json({menuItems})
 
   }catch(err){

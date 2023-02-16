@@ -10,6 +10,7 @@ function MenuItem({item}) {
     _id, 
     title, 
     description, 
+    canCustomize,
     category, 
     image, 
     isPizza, 
@@ -19,6 +20,8 @@ function MenuItem({item}) {
 
   } = item;
 
+  console.log(item);
+
   return (
     <div className='bg-white shadow-lg m-2'>  
       <div  className='h-48 relative'>
@@ -26,9 +29,12 @@ function MenuItem({item}) {
           <Image alt='meal type'  src={`${isVeg?"/veg.svg":"./non_veg.svg"}`} width={20} height={20} />
         </span>
         <span className='absolute z-10 top-2 right-2'><AiFillHeart color='red' size={25}/></span>
-        <span className='absolute z-10 px-1 font-bold bottom-2 left-2 text-xl text-white bg-gray-600/[.6]'>₹ {" "}100</span>
-        <span className='absolute bottom-2 right-2 z-10 whitespace-nowrap text-xs flex items-center bg-white rounded p-1' >Customize {" "} <AiOutlineArrowRight className='mx-2 text-green-600' /></span>
-        <Image src={image} alt={title} fill/>
+        <span className='absolute z-10 px-1 font-bold bottom-2 left-2 text-xl text-white bg-gray-600/[.6]'>₹ {" "}</span>
+        {
+          canCustomize && <span className='absolute bottom-2 right-2 z-10 whitespace-nowrap text-xs flex items-center bg-white rounded p-1' >Customize {" "} <AiOutlineArrowRight className='mx-2 text-green-600' /></span>
+        }
+        
+        <Image src={image} sizes="100%" alt={title} fill/>
       </div>
       <div className='text-sm p-2'>
         
@@ -38,24 +44,27 @@ function MenuItem({item}) {
           {description}
         </p>
 
-        <div className='flex space-x-2 py-5 border-y '>
-          <div className='grow flex flex-col'>
-            <label className='text-gray-500' htmlFor="size" >Size</label>
-            <select className='p-1 rounded-sm' name="size" id="size">
-              <option value="Regular">Regular</option>
-              <option value="Medium">Medium</option>
-              <option value="Large">Large</option>
-            </select>
-          </div>
-          <div className='grow flex flex-col'>
-            <label className='text-gray-500' htmlFor="size" >Crust</label>
+          {
+            isPizza&&<div className='flex space-x-2 py-5 border-y '>
+            <div className='grow flex flex-col'>
+              <label className='text-gray-500' htmlFor="size" >Size</label>
               <select className='p-1 rounded-sm' name="size" id="size">
-                <option value="Classic Hand tossed">Classic Hand tossed</option>
-                <option value="Fresh Pan Pizza">Medium</option>
-                <option value="Cheese Burst">Cheese Burst</option>
+                <option value="Regular">Regular</option>
+                <option value="Medium">Medium</option>
+                <option value="Large">Large</option>
               </select>
+            </div>
+            <div className='grow flex flex-col'>
+              <label className='text-gray-500' htmlFor="size" >Crust</label>
+                <select className='p-1 rounded-sm' name="size" id="size">
+                  <option value="Classic Hand tossed">Classic Hand tossed</option>
+                  <option value="Fresh Pan Pizza">Medium</option>
+                  <option value="Cheese Burst">Cheese Burst</option>
+                </select>
+            </div>
           </div>
-        </div>
+          }
+        
 
        <div className='flex mt-4'>
         <button className='ml-auto border-2 px-3 py-1 text-md rounded-md text-green-700 border-green-600 hover:bg-green-600 hover:text-white'>
