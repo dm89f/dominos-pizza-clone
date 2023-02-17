@@ -134,7 +134,10 @@ function Header() {
 
           {
             categories&&categories.map( (categ)=>(
-              <a href={`#${categ.split(' ').join('_')}`} onClick={handleNavLinkClick}  key={categ} className='nav_link mx-3 py-5 md:py-3'>{categ}</a>
+              <a 
+                href={`#${categ.split(' ').join('_')}`} 
+                onClick={handleNavLinkClick}  key={categ} 
+                className='nav_link outline-none mx-3 py-5 md:py-3'>{categ}</a>
             ) )
 
           }

@@ -12,7 +12,8 @@ module.exports = {
     extend: {
       colors:{
         "dominos-blue":"rgb(0, 102, 167)",
-        "dominos-bg":"rgb(242, 242, 242)"
+        "dominos-bg":"rgb(242, 242, 242)",
+        "dominos-green":"rgb(130, 187, 55)"
       }
     },
   },

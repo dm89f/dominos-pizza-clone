@@ -13,7 +13,7 @@ export default function  Home(){
       <Header/>
       <div className="grid grid-cols-7 max-w-screen  md:px-1" >
         <MenuContainer />
-        {/* <CheckoutContainer/> */}
+        <CheckoutContainer/>
       </div>
     </div>
   )
