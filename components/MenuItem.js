@@ -7,7 +7,7 @@ import {AiOutlineArrowRight, AiOutlinePlus, AiOutlineMinus} from 'react-icons/ai
 import MenuItemPrice from './utils/MenuItemPrice';
 
 function MenuItem({item}) {
-
+ 
   const {
     _id, 
     title, 
@@ -148,15 +148,16 @@ function MenuItem({item}) {
                 <div className='flex items-center border-2 rounded-md '>
                   <button 
                     onClick={handleRemoveOrderItem}
-                    className='px-3 py-1 bg-red-400 hover:bg-red-500 hover:scale-110'
+                    className='px-3 py-1 text-red-900 hover:bg-red-600 rounded-bl-md rounded-tl-md hover:scale-110'
                   >
-                    <AiOutlineMinus className='hover:text-white' size={20}/>
+                    <AiOutlineMinus className='hover:text-white' size={23}/>
                   </button>
                   <span className='px-3 py-1'>{qty}</span>
                   <button 
                     onClick={handleAddOrderItem}
-                    className='px-3 py-1 bg-green-400 hover:bg-green-500 hover:scale-110 '>
-                    <AiOutlinePlus color='black' size={20}/>
+                    className='px-3 py-1 text-green-600 hover:bg-green-600 rounded-tr-md rounded-br-md hover:scale-110 '
+                  >
+                    <AiOutlinePlus className='hover:text-white' size={23}/>
                   </button>
                 </div>
             }
