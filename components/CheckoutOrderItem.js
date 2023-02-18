@@ -2,6 +2,8 @@ import { AiOutlinePlus, AiOutlineMinus} from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
 import { addOrderItem, removeOrderItem} from '../features/orderItems.js/orderItemsSlice'
 
+
+
 function CheckoutOrderItem({ menuItemId, option, title, descriptiion,image,  }) {
 
   const dispatch = useDispatch();

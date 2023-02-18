@@ -3,7 +3,7 @@ import {printMenuCategories} from './utills'
 
 export const fetchMenuItems = createAsyncThunk( 'menuItems/fetchMenuItems', async()=>{
   try{
-    const res = await fetch(`http://localhost:3000/api/getMenuItems`);
+    const res = await fetch(`${process.env.host}/api/getMenuItems`);
     let {menuItems} = await res.json();
     // printMenuCategories(menuItems)
 
