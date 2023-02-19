@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, {useState, useEffect } from 'react'
 import Image from 'next/image'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import {TiTick} from 'react-icons/ti';
@@ -8,13 +8,20 @@ import {MdModeEditOutline} from 'react-icons/md'
 import {FaUserCircle} from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 import { getAllMenuCategories } from '../features/MenuItems/menuItemsSlice'
+import SideNavLeft from './SideNavLeft';
+
 
 function Header() {
 
   const categories = useSelector(getAllMenuCategories);
 
-  function getOffsetTop( elem )
-  {
+  const [ leftMenu, setLeftMenu  ] = useState(false);
+
+  function toggleLeftMenu(){
+    setLeftMenu(!leftMenu);
+  }
+
+  function getOffsetTop( elem ){
     var offsetTop = 0;
     do {
       if ( !isNaN( elem.offsetTop ) )
@@ -88,15 +95,19 @@ function Header() {
     }
   }
 
-
+  
 
 
   return (
-    <nav className='sticky top-0 z-50' >
-      {/* top nav */}
+    <nav className='relative sticky top-0 z-50' >
+
+      <div className={`${!leftMenu?'hidden':""} overlay`} onClick={toggleLeftMenu}></div>
+
+      <SideNavLeft active={leftMenu} toggleLeftMenu={toggleLeftMenu} />
+      {/* top nav */} 
       <div className='flex px-2 md:px-5 lg:px-10  bg-dominos-blue text-white text-sm whitespace-nowrap'>
         <div className='py-3 flex items-center lg:py-1' >
-            <GiHamburgerMenu size={30} className="mr-5"  />
+            <GiHamburgerMenu onClick={toggleLeftMenu} size={30} className="mr-5"  />
             <Image alt='logo' className='w-auto h-auto' src={'/logo.svg'} width={180} height={100}/>
         </div>
 

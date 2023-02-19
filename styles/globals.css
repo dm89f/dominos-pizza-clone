@@ -7,4 +7,25 @@
   .link_active{
     @apply text-dominos-blue border-b-2 border-green-700;
   }
+  .overlay{
+    width: 100vw;
+    height:calc(100vh);
+    position: absolute;
+    z-index: 40;
+    background-color:rgba(26, 15, 15, 0.74);
+    overflow: hidden;
+  
+  }
+
+  .sidenav-modal{
+    z-index: 50;
+    position: absolute;
+    transition: all .4s ease;
+    width: 400px;
+    height:100vh;
+    background-color: white;
+  }
 }
+
+
+
