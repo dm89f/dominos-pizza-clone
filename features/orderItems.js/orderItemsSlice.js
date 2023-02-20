@@ -15,9 +15,11 @@ import {
 let initialState = {
   totalPrice: 0,
   totalItems: 0,
+  isOrderDelivery:true,
   orderItems: [],
 }
 
+// structure of OrderSlice
 /*
   orderItems:[
     { 
@@ -164,33 +166,9 @@ const orderItemsSlice = createSlice({
       updateTotalOrderPriceQty( state );
 
     },
-    // increaseOrderOption( state, action ){
-
-    //   const { menuItemId, optionId } = action.payload;
-      
-
-    // },
-    // decreaseOrderOption( state, action ){
-
-    //   const { menuItemId, option } = action.payload;
-    //   const orderItemIdx = findOrderItemIdx(state.orderItems, menuItemId);
-    //   if(orderItemIdx < 0) return;
-    //   const optionIdx = findOrderOptionIdx(state.orderItems[orderItemIdx].orderOptions, option.size, 
-    //   option.crust, option.toppings, option.extraCheese );
-      
-    //   if( optionIdx <0 )return;
-      
-    //   state.orderItems[orderItemIdx].orderOptions[optionIdx].qty -= 1;
-    //   state.orderItems[orderItemIdx].totalQty -= 1;
-    //   state.totalItems -= 1;
-
-    //   state.orderItems[orderItemIdx].orderOptions = state.orderItems[orderItemIdx].orderOptions.filter( (option)=>( option.qty !== 0) );
-    //   state.orderItems = state.orderItems.filter( (item)=>( item.totalQty !== 0 ));
-
-    //   updateOrderMenuPriceQty( state.orderItems[orderItemIdx] );
-    //   updateTotalOrderPriceQty( state );
-      
-    // }
+    updateOrderType(state, action){
+      state.isOrderDelivery = action.payload;
+    }
   },
 
 });
@@ -203,10 +181,11 @@ export const getTotalOrderItemQty = (state, menuItemId)=>{
 }
 
 export const getAllOrderItems = ( state=> state.orderItems );
-
+export const getOrderType = ( (state)=>state.isOrderDelivery )
 
 export const {
   addOrderItem,
+  updateOrderType,
   removeOrderItem
 } = orderItemsSlice.actions;
 

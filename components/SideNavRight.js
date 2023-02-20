@@ -2,10 +2,14 @@ import React from 'react'
 import SidenavModal from './utils/SidenavModal';
 
 
-function SideNavRight({active, toggleRightMenu}) {
-  
+function SideNavRight({active, toggle}) {
+
+  if(!active){
+    return "";
+  }
+
   return (
-    <SidenavModal active={active} toggle={toggleRightMenu} position={{right:true}}>
+    <SidenavModal active={active} toggle={toggle} position={{right:true}}>
       
     </SidenavModal>
   )

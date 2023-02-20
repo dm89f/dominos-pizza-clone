@@ -1,4 +1,6 @@
 import React, {useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux';
+import { getOrderType, updateOrderType } from '../features/orderItems.js/orderItemsSlice'
 import Image from 'next/image'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import {TiTick} from 'react-icons/ti';
@@ -6,7 +8,6 @@ import {BsCircle} from 'react-icons/bs';
 import {FiMapPin} from 'react-icons/fi'
 import {MdModeEditOutline} from 'react-icons/md'
 import {FaUserCircle} from 'react-icons/fa';
-import { useSelector } from 'react-redux';
 import { getAllMenuCategories } from '../features/MenuItems/menuItemsSlice'
 import SideNavLeft from './SideNavLeft';
 import Profile from './utils/Profile';
@@ -17,14 +18,12 @@ import SideNavRight from './SideNavRight';
 function Header() {
 
   const categories = useSelector(getAllMenuCategories);
+  const dispatch = useDispatch();
+  const isOrderDelivery = useSelector((state)=>getOrderType(state));
   const [ leftMenu, setLeftMenu  ] = useState(false);
   const [ rightMenu, setRightMenu  ] = useState(false);
   const [activeProfile, setActiveProfile] = useState(false);
-  const [deliveryMenu, setDeliveryMenu] = useState(false);
-  const [ pickupMenu, setPickUpMenu ] = useState(false);
-  const [addressMenu, setAddressMenu] = useState(false);
   const [ activeOverlay, setActiveOverlay ] = useState(false);
-  const [isOrderDelivery, setIsOrderDelivery] = useState(true);
 
 
 
@@ -145,52 +144,25 @@ function Header() {
     }
   }
 
-  const handledeliveryMenuClick = ()=>{
-    turnOffMenus();
-    if( deliveryMenu ){
-      setDeliveryMenu(false);
-      setIsOrderDelivery(false);
-    }else{
-      setDeliveryMenu(true);
-      setIsOrderDelivery(true);
-      setActiveOverlay(true);
-    }
+  const setIsOrderDelivery = (type)=>{
+    dispatch(updateOrderType(type));
   }
 
-  const handlePickupMenuClick = ()=>{
-
-    turnOffMenus();
-    if( pickupMenu ){
-      setPickUpMenu(false);
-      setIsOrderDelivery(false);
-    }else{
-      setPickUpMenu(true);
-      setIsOrderDelivery(false);
-      setActiveOverlay(true);
-    }
+  const handlePickupClick = ()=>{
 
   }
 
-  const handleAddressMenuClick = ()=>{
-
-    turnOffMenus();
-    if( addressMenu ){
-      setIsOrderDelivery(true);
-    }else{
-      setIsOrderDelivery(false);
-      setActiveOverlay(true);
-    }
+  const handleAddressClick = ()=>{
 
   }
-
 
   return (
     <nav className='relative sticky top-0 z-50 ' >
 
       <div className={`${!activeOverlay?'hidden':""} overlay translate-y-14 lg:translate-y-10  overflow-hidden`} onClick={turnOffMenus}></div>
 
-      <SideNavLeft  active={leftMenu} toggleLeftMenu={handleLeftMenuClick} />
-      <SideNavRight  active={rightMenu} toggleRightMenu={handleRightMenuClick} />
+      <SideNavLeft  active={leftMenu} toggle={turnOffMenus} />
+      <SideNavRight  active={rightMenu} toggle={turnOffMenus} />
       {/* top nav */} 
       <div className='flex px-2 md:px-5 lg:px-10  bg-dominos-blue text-white text-sm whitespace-nowrap'>
         <div className='py-3 flex items-center lg:py-1' >
@@ -201,20 +173,26 @@ function Header() {
         <div className='relative py-3  flex ml-auto items-center space-x-4 text-xs lg:py-1 '>
 
           <div className='hidden md:flex items-center space-x-2 pl-3 border-l border-gray-200 '
-            onClick={handledeliveryMenuClick}
+            onClick={()=> { setIsOrderDelivery(true); handleRightMenuClick()}}
+
           >
-            <BsCircle/>
+             {
+              isOrderDelivery?<TiTick size={28}/>:<BsCircle/>
+             }
             <span>Delivery</span>
           </div>
           <div className='hidden md:flex flex items-center space-x-2'
-            onClick={handlePickupMenuClick}
+            onClick={()=> { setIsOrderDelivery(false); handleRightMenuClick()}}
           >
-            <TiTick  size={20}/>
+            {
+              !isOrderDelivery?<TiTick size={28}/>:<BsCircle/>
+            }
             <span>Pick Up/ Dine-in</span>
           </div>
 
           <div className='hidden lg:flex flex items-center space-x-2 '
-            onClick={handleAddressMenuClick}
+            onClick={()=> { setIsOrderDelivery(true); handleRightMenuClick()}}
+
           >
             <FiMapPin size={20}/>
             <p>Hoysalanagar, Horamavu, Bengaluru</p>

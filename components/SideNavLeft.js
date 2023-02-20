@@ -6,13 +6,13 @@
  
 
 
-function SideNavLeft( {active, toggleLeftMenu} ) {
+function SideNavLeft( {active, toggle} ) {
 
 
 
 
   return (
-    <SidenavModal active={active} toggle={toggleLeftMenu} position={{left:true}}>
+    <SidenavModal active={active} toggle={toggle} position={{left:true}}>
       <div>
         <p className='hover:cursor-pointer px-10 py-5 mb-3 flex  hover:bg-gray-100 items-center'>
           <GrMap size={25} className="mr-5"/>
