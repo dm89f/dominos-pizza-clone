@@ -9,28 +9,24 @@ import {FaUserCircle} from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 import { getAllMenuCategories } from '../features/MenuItems/menuItemsSlice'
 import SideNavLeft from './SideNavLeft';
+import Profile from './utils/Profile';
+import SideNavRight from './SideNavRight';
+
 
 
 function Header() {
 
   const categories = useSelector(getAllMenuCategories);
-
   const [ leftMenu, setLeftMenu  ] = useState(false);
+  const [ rightMenu, setRightMenu  ] = useState(false);
+  const [activeProfile, setActiveProfile] = useState(false);
+  const [deliveryMenu, setDeliveryMenu] = useState(false);
+  const [ pickupMenu, setPickUpMenu ] = useState(false);
+  const [addressMenu, setAddressMenu] = useState(false);
+  const [ activeOverlay, setActiveOverlay ] = useState(false);
+  const [isOrderDelivery, setIsOrderDelivery] = useState(true);
 
-  function toggleLeftMenu(){
-    setLeftMenu(!leftMenu);
-  }
 
-  function getOffsetTop( elem ){
-    var offsetTop = 0;
-    do {
-      if ( !isNaN( elem.offsetTop ) )
-      {
-          offsetTop += elem.offsetTop;
-      }
-    } while( elem = elem.offsetParent );
-    return offsetTop;
-  }
 
   useEffect(()=>{
 
@@ -39,6 +35,17 @@ function Header() {
 
       const sections = document.querySelectorAll('.menu_categs');
       const navLi = document.querySelectorAll('.nav_link');
+
+      const getOffsetTop = ( elem )=>{
+        var offsetTop = 0;
+        do {
+          if ( !isNaN( elem.offsetTop ) )
+          {
+              offsetTop += elem.offsetTop;
+          }
+        } while( elem = elem.offsetParent );
+        return offsetTop;
+      }
 
       sections.forEach((section) => {
         const sectionTop = getOffsetTop(section);
@@ -95,45 +102,135 @@ function Header() {
     }
   }
 
-  
+  const turnOffMenus = ()=>{
+
+    setLeftMenu(false);
+    setRightMenu(false);
+    setActiveProfile(false);
+    setActiveOverlay(false);
+  }
+
+  const handleLeftMenuClick = ()=>{
+
+    turnOffMenus(false);
+    if( leftMenu ){
+      setLeftMenu(false);
+    }else{
+      setActiveOverlay(true);
+      setLeftMenu(true);
+    }
+
+  }
+
+  const handleRightMenuClick = ()=>{
+
+    turnOffMenus();
+    if(rightMenu){
+      setRightMenu(false);
+    }else{
+      setActiveOverlay(true);
+      setRightMenu(true);
+    }
+
+  }
+
+  const handleActiveProfileClick = ()=>{
+
+    turnOffMenus();
+    if(activeProfile){
+      setActiveProfile(false);
+    }else{
+      setActiveOverlay(true);
+      setActiveProfile(true);
+    }
+  }
+
+  const handledeliveryMenuClick = ()=>{
+    turnOffMenus();
+    if( deliveryMenu ){
+      setDeliveryMenu(false);
+      setIsOrderDelivery(false);
+    }else{
+      setDeliveryMenu(true);
+      setIsOrderDelivery(true);
+      setActiveOverlay(true);
+    }
+  }
+
+  const handlePickupMenuClick = ()=>{
+
+    turnOffMenus();
+    if( pickupMenu ){
+      setPickUpMenu(false);
+      setIsOrderDelivery(false);
+    }else{
+      setPickUpMenu(true);
+      setIsOrderDelivery(false);
+      setActiveOverlay(true);
+    }
+
+  }
+
+  const handleAddressMenuClick = ()=>{
+
+    turnOffMenus();
+    if( addressMenu ){
+      setIsOrderDelivery(true);
+    }else{
+      setIsOrderDelivery(false);
+      setActiveOverlay(true);
+    }
+
+  }
 
 
   return (
-    <nav className='relative sticky top-0 z-50' >
+    <nav className='relative sticky top-0 z-50 ' >
 
-      <div className={`${!leftMenu?'hidden':""} overlay`} onClick={toggleLeftMenu}></div>
+      <div className={`${!activeOverlay?'hidden':""} overlay translate-y-14 lg:translate-y-10  overflow-hidden`} onClick={turnOffMenus}></div>
 
-      <SideNavLeft active={leftMenu} toggleLeftMenu={toggleLeftMenu} />
+      <SideNavLeft  active={leftMenu} toggleLeftMenu={handleLeftMenuClick} />
+      <SideNavRight  active={rightMenu} toggleRightMenu={handleRightMenuClick} />
       {/* top nav */} 
       <div className='flex px-2 md:px-5 lg:px-10  bg-dominos-blue text-white text-sm whitespace-nowrap'>
         <div className='py-3 flex items-center lg:py-1' >
-            <GiHamburgerMenu onClick={toggleLeftMenu} size={30} className="mr-5"  />
+            <GiHamburgerMenu onClick={handleLeftMenuClick} size={30} className="mr-5"  />
             <Image alt='logo' className='w-auto h-auto' src={'/logo.svg'} width={180} height={100}/>
         </div>
 
-        <div className='py-3  flex ml-auto items-center space-x-4 text-xs lg:py-1 '>
-          <div className='hidden md:flex items-center space-x-2 pl-3 border-l border-gray-200 '>
+        <div className='relative py-3  flex ml-auto items-center space-x-4 text-xs lg:py-1 '>
+
+          <div className='hidden md:flex items-center space-x-2 pl-3 border-l border-gray-200 '
+            onClick={handledeliveryMenuClick}
+          >
             <BsCircle/>
             <span>Delivery</span>
           </div>
-          <div className='hidden md:flex flex items-center space-x-2'>
+          <div className='hidden md:flex flex items-center space-x-2'
+            onClick={handlePickupMenuClick}
+          >
             <TiTick  size={20}/>
             <span>Pick Up/ Dine-in</span>
           </div>
 
-          <div className='hidden lg:flex flex items-center space-x-2 '>
+          <div className='hidden lg:flex flex items-center space-x-2 '
+            onClick={handleAddressMenuClick}
+          >
             <FiMapPin size={20}/>
             <p>Hoysalanagar, Horamavu, Bengaluru</p>
             <MdModeEditOutline size={20}/>
           </div>
-          <div className='flex items-center space-x-2'>
+
+          <div className='flex items-center space-x-2'
+            onClick={handleActiveProfileClick}
+          >
             <FaUserCircle size={25}/>
             <p className='flex flex-col'>
               <span>Dileep B C</span>
               <span>9019664884</span>
             </p>
           </div>
-
+          <Profile active={activeProfile} />
         </div>
       </div>     
 

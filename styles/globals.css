@@ -12,6 +12,7 @@
     height:calc(100vh);
     position: absolute;
     z-index: 40;
+    /* transform: translateY(40px); */
     background-color:rgba(26, 15, 15, 0.74);
     overflow: hidden;
   
@@ -21,11 +22,15 @@
     z-index: 50;
     position: absolute;
     transition: all .4s ease;
-    width: 400px;
+    width: 450px;
     height:100vh;
     background-color: white;
   }
 }
 
-
+@media only screen and (max-width: 600px) {
+  .sidenav-modal{
+    width:100vw;
+  }
+}
 
