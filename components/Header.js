@@ -1,6 +1,6 @@
 import React, {useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux';
-import { getOrderType, updateOrderType } from '../features/orderItems.js/orderItemsSlice'
+import { useSelector } from 'react-redux';
+import { getOrderType    } from '../features/orderItems.js/orderItemsSlice'
 import Image from 'next/image'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import {TiTick} from 'react-icons/ti';
@@ -18,13 +18,11 @@ import SideNavRight from './SideNavRight';
 function Header() {
 
   const categories = useSelector(getAllMenuCategories);
-  const dispatch = useDispatch();
   const isOrderDelivery = useSelector((state)=>getOrderType(state));
   const [ leftMenu, setLeftMenu  ] = useState(false);
   const [ rightMenu, setRightMenu  ] = useState(false);
   const [activeProfile, setActiveProfile] = useState(false);
   const [ activeOverlay, setActiveOverlay ] = useState(false);
-
 
 
   useEffect(()=>{
@@ -73,6 +71,17 @@ function Header() {
     };
     
   })
+
+  useEffect( ()=>{
+    
+    return window.addEventListener('keydown', (e)=>{
+      console.log(e.code);
+      if(e.code === 'Escape'){
+        turnOffMenus();
+      }
+    })
+
+  },[activeOverlay])
 
   function handleNavLinkClick(e){
 
@@ -144,17 +153,6 @@ function Header() {
     }
   }
 
-  const setIsOrderDelivery = (type)=>{
-    dispatch(updateOrderType(type));
-  }
-
-  const handlePickupClick = ()=>{
-
-  }
-
-  const handleAddressClick = ()=>{
-
-  }
 
   return (
     <nav className='relative sticky top-0 z-50 ' >
@@ -173,7 +171,7 @@ function Header() {
         <div className='relative py-3  flex ml-auto items-center space-x-4 text-xs lg:py-1 '>
 
           <div className='hidden md:flex items-center space-x-2 pl-3 border-l border-gray-200 '
-            onClick={()=> { setIsOrderDelivery(true); handleRightMenuClick()}}
+            onClick={()=> {handleRightMenuClick()}}
 
           >
              {
@@ -182,7 +180,7 @@ function Header() {
             <span>Delivery</span>
           </div>
           <div className='hidden md:flex flex items-center space-x-2'
-            onClick={()=> { setIsOrderDelivery(false); handleRightMenuClick()}}
+            onClick={()=> { handleRightMenuClick()}}
           >
             {
               !isOrderDelivery?<TiTick size={28}/>:<BsCircle/>
@@ -191,7 +189,7 @@ function Header() {
           </div>
 
           <div className='hidden lg:flex flex items-center space-x-2 '
-            onClick={()=> { setIsOrderDelivery(true); handleRightMenuClick()}}
+            onClick={()=> { handleRightMenuClick()}}
 
           >
             <FiMapPin size={20}/>

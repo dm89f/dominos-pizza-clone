@@ -181,7 +181,7 @@ export const getTotalOrderItemQty = (state, menuItemId)=>{
 }
 
 export const getAllOrderItems = ( state=> state.orderItems );
-export const getOrderType = ( (state)=>state.isOrderDelivery )
+export const getOrderType = ( (state)=> ( state.orderItems.isOrderDelivery ) )
 
 export const {
   addOrderItem,
