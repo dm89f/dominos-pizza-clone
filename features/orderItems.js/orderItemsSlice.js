@@ -17,6 +17,7 @@ let initialState = {
   totalItems: 0,
   isOrderDelivery:true,
   orderItems: [],
+  cartStatus:'idle',   // 'idle', 'active'
 }
 
 // structure of OrderSlice
@@ -52,10 +53,10 @@ let initialState = {
 */
 // reducers
 
-// addOrderItems => find the Order item & increase the qty if not found push the Order if no similar order item did not exist
-
+// addOrderItem => find the Order item & increase the qty if not found push the Order if no similar order item did not exist
 // remove => find and decrease the qty of the Order item if not found just return
 
+// Actions
 // increaseOrderOption => find and increase the option qty
 // decreaseOrderOption => ifnd and decrease the option qty
 
@@ -65,6 +66,24 @@ const orderItemsSlice = createSlice({
   initialState,
   reducers: {
     
+    initializeCart(state, action){
+
+      let prevState = JSON.parse(localStorage.getItem('orderItems'));
+      
+      if( !prevState ){
+        state = initialState;
+      }
+
+      state.cartStatus = prevState.cartStatus;
+      state.isOrderDelivery = prevState.isOrderDelivery;
+      state.orderItems = prevState.orderItems;
+      state.totalItems = prevState.totalItems;
+      state.totalPrice = prevState.totalPrice;
+
+    },
+    setActiveCartStatus( state, action ){
+      state.cartStatus = 'active';
+    },
     addOrderItem(state, action) {
       const { 
         menuItemId,
@@ -120,6 +139,7 @@ const orderItemsSlice = createSlice({
 
       }
       
+      window.localStorage.setItem( 'orderItems',JSON.stringify(state) );
       updateTotalOrderPriceQty( state );
 
     },
@@ -164,10 +184,13 @@ const orderItemsSlice = createSlice({
       state.orderItems = state.orderItems.filter( (item)=>( item.totalQty !== 0 ));
       updateOrderMenuPriceQty( state.orderItems[orderItemIdx] );
       updateTotalOrderPriceQty( state );
+      window.localStorage.setItem( 'orderItems',JSON.stringify(state) );
 
     },
     updateOrderType(state, action){
       state.isOrderDelivery = action.payload;
+      window.localStorage.setItem( 'orderItems',JSON.stringify(state) );
+
     }
   },
 
@@ -182,11 +205,14 @@ export const getTotalOrderItemQty = (state, menuItemId)=>{
 
 export const getAllOrderItems = ( state=> state.orderItems );
 export const getOrderType = ( (state)=> ( state.orderItems.isOrderDelivery ) )
+export const getCartStatus = ( (state)=> (state.orderItems.cartStatus) )
 
 export const {
   addOrderItem,
   updateOrderType,
-  removeOrderItem
+  removeOrderItem,
+  initializeCart,
+  setActiveCartStatus
 } = orderItemsSlice.actions;
 
 
