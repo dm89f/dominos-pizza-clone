@@ -28,6 +28,39 @@
   }
 }
 
+.bottom-nav-cart{
+  position: fixed;
+  z-index: 50;
+  top:calc(100vh - 80px);
+  left:0;
+  width: 100vw;
+  height: 80px;
+  background-color: red;
+  transition: height .5s ease-out;
+}
+
+
+.bottom-nav-cart.active{
+  top:calc(100vh - 300px);
+  height: 300px;
+
+}
+
+.bottom-cart-container{
+  position: absolute;
+  background-color: white;
+  overflow-y: scroll;
+  z-index: 10;
+  top: 0px;
+  height: 500px;
+  width: 100vw;
+  transition: all .3s ease;
+}
+
+.bottom-cart-container.show{
+  transform: translateY(-100%);
+}
+
 @media only screen and (max-width: 600px) {
   .sidenav-modal{
     width:100vw;

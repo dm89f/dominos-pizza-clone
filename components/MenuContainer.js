@@ -3,6 +3,9 @@ import PizzaMenuItems from './PizzaMenuItems'
 import {useSelector} from 'react-redux'
 import { useDispatch } from 'react-redux';
 import { fetchMenuItems,getAllMenuCategories, getAllMenuItems, getMenuItemsError,getMenuItemsStatus } from '../features/MenuItems/menuItemsSlice';
+import BottomCartNavBtn from './utils/BottomCartNavBtn';
+import BottomCartItems from './utils/BottomCartItems';
+import CheckoutCartNavBtn from './utils/CheckoutCartNavBtn';
 
 
 function MenuContainer() {
@@ -13,6 +16,11 @@ function MenuContainer() {
   const menuStatus = useSelector(getMenuItemsStatus);
   const menuItemsError = useSelector(getMenuItemsError);
   const categories = useSelector(getAllMenuCategories);
+  const [showbottomCartNav, setShowbottomCartNav] = useState(false);
+
+  const toggleBottomcart=()=>{
+    setShowbottomCartNav(!showbottomCartNav);
+  }
 
   useEffect(()=>{
 
@@ -46,7 +54,15 @@ function MenuContainer() {
           return (<PizzaMenuItems key={categ} menuItem={menuItem}/>); 
         })
       }
-    
+      <div className='xl:hidden bottom-nav-cart'>
+        <div className='relative'>
+          <div className={`bottom-cart-container ${showbottomCartNav&&"show"}`} > 
+            <BottomCartItems toggleBottomcart={toggleBottomcart}/>
+          </div>
+        </div>
+        {!showbottomCartNav&&<BottomCartNavBtn toggleBottomcart={toggleBottomcart}/> } 
+        {showbottomCartNav&&<CheckoutCartNavBtn/> } 
+      </div>
     </section>
 
   )

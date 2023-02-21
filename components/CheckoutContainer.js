@@ -4,14 +4,12 @@ import Image from 'next/image'
 import {getAllOrderItems,} from '../features/orderItems.js/orderItemsSlice'
 import CheckoutOrderItem from './CheckoutOrderItem'
 
-
+// right side checkout container
 function CheckoutContainer() {
 
   let orderItems = useSelector(getAllOrderItems)
   let totalPrice = orderItems.totalPrice;
   let totalItems = orderItems.totalItems;
-
-  console.log(orderItems);
 
   return (
     <div className='relative hidden col-span-0 xl:col-span-2 xl:block'>
