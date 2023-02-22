@@ -3,7 +3,7 @@ import MenuItem from './MenuItem'
 
 
 
-function PizzaMenuItems({menuItem}) {
+function PizzaMenuItems({menuItem, setCustomizeMenu}) {
   
   const { category, items } = menuItem;
 
@@ -13,7 +13,7 @@ function PizzaMenuItems({menuItem}) {
       {
         items.map( (item, idx)=>{
             return(
-            <MenuItem key={category+item._id+idx} item={item} />
+            <MenuItem setCustomizeMenu={setCustomizeMenu} key={category+item._id+idx} item={item} />
           )
         })
 

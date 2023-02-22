@@ -72,6 +72,7 @@ const orderItemsSlice = createSlice({
       
       if( !prevState ){
         state = initialState;
+        return;
       }
 
       state.cartStatus = prevState.cartStatus;

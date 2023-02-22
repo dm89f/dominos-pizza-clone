@@ -6,9 +6,10 @@ import { fetchMenuItems,getAllMenuCategories, getAllMenuItems, getMenuItemsError
 import BottomCartNavBtn from './utils/BottomCartNavBtn';
 import BottomCartItems from './utils/BottomCartItems';
 import CheckoutCartNavBtn from './utils/CheckoutCartNavBtn';
+import MenuItemCustomize from './MenuItemCustomize';
 
 
-function MenuContainer() {
+function MenuContainer({setCustomizeMenu}) {
 
 
   const dispatch = useDispatch();
@@ -51,7 +52,7 @@ function MenuContainer() {
             // console.log(categ);
             return;
           }
-          return (<PizzaMenuItems key={categ} menuItem={menuItem}/>); 
+          return (<PizzaMenuItems setCustomizeMenu={setCustomizeMenu} key={categ} menuItem={menuItem}/>); 
         })
       }
       <div className='xl:hidden bottom-nav-cart'>

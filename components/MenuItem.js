@@ -6,7 +6,7 @@ import{AiOutlineHeart, AiFillHeart} from 'react-icons/ai';
 import {AiOutlineArrowRight, AiOutlinePlus, AiOutlineMinus} from 'react-icons/ai';
 import MenuItemPrice from './utils/MenuItemPrice';
 
-function MenuItem({item}) {
+function MenuItem({item, setCustomizeMenu}) {
  
   const {
     _id, 
@@ -105,7 +105,9 @@ function MenuItem({item}) {
         </span>
         <span className='absolute z-10 px-1 font-bold bottom-2 left-2 text-xl text-white bg-gray-600/[.6]'>₹ {" "}{menuPrice}</span>
           {
-            canCustomize && <span className='absolute bottom-2 right-2 z-10 whitespace-nowrap text-xs flex items-center bg-white rounded p-1' >Customize {" "} <AiOutlineArrowRight className='mx-2 text-green-600' /></span>
+            canCustomize && <span className='absolute bottom-2 right-2 z-10 whitespace-nowrap text-xs flex items-center bg-white rounded p-1' 
+            onClick={()=>setCustomizeMenu(item)}
+            >Customize {" "} <AiOutlineArrowRight className='mx-2 text-green-600' /></span>
           }
         <Image src={image} sizes="100%" alt={title} fill/>
       </div>

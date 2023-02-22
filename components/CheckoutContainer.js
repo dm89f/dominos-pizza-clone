@@ -15,7 +15,6 @@ function CheckoutContainer() {
     <div className='relative hidden col-span-0 xl:col-span-2 xl:block'>
       <div className='w-4/5  mx-auto mt-20 h-48 bg-no-repeat bg-center bg-cover' style={{ backgroundImage:'url(https://api.dominos.co.in/prod-olo-api/images/flashBanner/Dominos_Howzzat_IPL-2021_Menu.jpg)' }} >
       </div>
-
       <div className="sticky top-48">
         
         <div className={` overflow-scroll bg-white border-t-2 border-green-600 w-4/5 mt-4 h-96 mx-auto ${totalItems === 0 && "bg-right-top bg-no-repeat bg-[url('/empty_cart.png')]"} px-2 relative`}>
@@ -68,7 +67,6 @@ function CheckoutContainer() {
           </div>
         </div>
       </div>
-      
       
     </div>
   )
