@@ -6,7 +6,6 @@ import { fetchMenuItems,getAllMenuCategories, getAllMenuItems, getMenuItemsError
 import BottomCartNavBtn from './utils/BottomCartNavBtn';
 import BottomCartItems from './utils/BottomCartItems';
 import CheckoutCartNavBtn from './utils/CheckoutCartNavBtn';
-import MenuItemCustomize from './MenuItemCustomize';
 
 
 function MenuContainer({setCustomizeMenu}) {

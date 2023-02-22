@@ -53,7 +53,7 @@ export function SliderDivContainer({children,active, handleClick}){
 
   return  (
   <li onClick={handleClick}>
-    <div id='slider-div-container'  className={`py-2 px-2 border-2 ${active?' border-blue-600 text-white bg-blue-100':''}`}>
+    <div id='slider-div-container'  className={`py-2 px-2 border-2 ${active?' border-green-600 text-white ':''}`}>
       {children}
     </div>
   </li>

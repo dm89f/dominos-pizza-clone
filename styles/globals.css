@@ -30,9 +30,9 @@
 
 .bottom-nav-cart{
   position: fixed;
-  z-index: 0;
+  z-index: 10;
   top:calc(100vh - 80px);
-  left:0;
+  left:30;
   width: 100vw;
   height: 80px;
   background-color: red;
