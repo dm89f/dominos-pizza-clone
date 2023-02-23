@@ -41,12 +41,18 @@ function CheckoutOrderItem({ menuItemId, option, title, descriptiion,image,  }) 
           </div>
           <div className='w-3/4  pl-3'>
             <h3 className='text-sm font-bold '>{title}</h3>
-            <p className='text-sm text-gray-500 '>{
-              descriptiion.length >= 50 ? ( descriptiion.substr(0,50) + "..." ) :
-              descriptiion
-            }</p>
-            <span className=' text-xs'>{ option.size} {" | "} { option.crust }</span>
-          </div>
+            <p className='text-xs mb-2 text-gray-500 '>
+              {
+                option.toppings&&JSON.parse(option.toppings).map((item)=>{
+                  return <span className='p-1 mx-1 my-1 bg-gray-100'>{item.title}</span>
+                })
+              }
+            </p>
+            <span className='mr-2 text-xs'>{ option.size} {" | "} { option.crust }</span>
+            {
+              option.extraCheese&&<span className='bg-dominos-green text-white p-1 rounded mx-2 text-xs'>Extra Cheese</span>
+          
+            }</div>
         </div>
 
         {/* bottom */}
