@@ -10,7 +10,7 @@ export const fetchMenuItems = createAsyncThunk( 'menuItems/fetchMenuItems', asyn
     return menuItems;
   }catch(err){
     console.log(err);
-    return {};
+    return {err};
   }
 
 } )

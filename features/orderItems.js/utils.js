@@ -20,7 +20,6 @@ export function findOrderOptionIdx( orderOptions,{ size, crust, toppings, extraC
 }
 
 
-
 //update order menu price and Qty
 export function updateOrderMenuPriceQty(orderItem){
 
