@@ -39,10 +39,13 @@ let initialState = {
           crust,
           unitPrice,
           qty,
-          toppings:{
-            veg:[],
-            nonVeg:[]
-          },
+          toppings:[
+            {
+              title:'',
+              image:''
+              isVeg:
+            }
+          ],
           extraCheese:Boolean
         }
       ],

@@ -94,6 +94,8 @@ function MenuItemCustomize({customizeMenu, setCustomizeMenu}) {
 
   const handleAddToCart = ()=>{
 
+    let addToppingsToCart = toppings.filter( (item)=>(item.included) )
+
     dispatch( addOrderItem({
       menuItemId: customizeMenu._id,
       title:customizeMenu.title, 
@@ -104,7 +106,7 @@ function MenuItemCustomize({customizeMenu, setCustomizeMenu}) {
       crust:crust,
       qty:1,
       unitPrice:unitPrice,
-      toppings:toppings,
+      toppings:JSON.stringify(addToppingsToCart),
       extraCheese:addCheese
     }))
     setCustomizeMenu({})
