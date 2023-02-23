@@ -35,7 +35,7 @@ function MenuItem({item, setCustomizeMenu}) {
   useEffect( ()=>{
     if(!isPizza) return;
     calculatePrice(size, crust);
-  }, [size, crust] )
+  }, [size, crust] )  
   
   const updateSize = (e)=>{
     setSize(e.target.value);

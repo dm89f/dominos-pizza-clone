@@ -22,7 +22,7 @@ export default function  Home(){
       dispatch(setActiveCartStatus);
     }
 
-  },[])
+  },[dispatch, cartStatus])
 
   return(
     <div className="bg-dominos-bg">

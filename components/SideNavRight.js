@@ -9,13 +9,13 @@ import {TfiMapAlt, } from 'react-icons/tfi'
 
 function SideNavRight({active, toggle}) {
 
-  if(!active){
-    return "";
-  }
+
 
   const dispatch = useDispatch();
   const isOrderDelivery =   useSelector(getOrderType);
-
+  if(!active){
+    return "";
+  }
   const handleDeliveryClick = (e)=>{
     e.preventDefault();
     console.log("clicked")
